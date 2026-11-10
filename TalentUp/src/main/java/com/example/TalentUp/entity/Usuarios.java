@@ -1,7 +1,6 @@
 package com.example.TalentUp.entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
