@@ -30,9 +30,7 @@ public class UsuarioServiceImpl implements UsuariosService{
     @Override
     @Transactional
     public Usuarios save(Usuarios usuario) {
-
         return usuarioDAO.save(usuario);
-
     }
 
     @Override
