@@ -1,9 +1,7 @@
 package com.example.TalentUp.controller;
 
 import com.example.TalentUp.entity.Empleados;
-import com.example.TalentUp.entity.Usuarios;
 import com.example.TalentUp.service.empleados.EmpleadosService;
-import com.example.TalentUp.service.usuario.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
