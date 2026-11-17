@@ -6,9 +6,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UsuarioDAOImpl implements UsuarioDAO {
@@ -42,7 +43,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     }
 
-    @DeleteMapping
     @Override
     @Transactional
     public void deleteById(int theId) {
@@ -54,6 +54,18 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         entityManager.remove(usuario);
 
+    }
+
+    @Override
+    public Optional<Usuarios> findByCorreo(String correo) {
+
+        return entityManager.createQuery(
+                        "SELECT u FROM Usuarios u WHERE u.correo = :correo",
+                        Usuarios.class
+                )
+                .setParameter("correo", correo)
+                .getResultStream()
+                .findFirst();
     }
 }
 

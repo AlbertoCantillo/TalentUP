@@ -31,7 +31,6 @@ public class RegistroLaboralDAOImpl implements RegistroLaboralDAO {
                 .getResultList();
     }
 
-    // Consultar todos los registros
     @Override
     public List<RegistroLaboral> findAll() {
 
@@ -41,7 +40,6 @@ public class RegistroLaboralDAOImpl implements RegistroLaboralDAO {
                 .getResultList();
     }
 
-    // Consultar por empleado
     @Override
     public List<RegistroLaboral> findByIdEmpleado(Integer idEmpleado) {
 
@@ -52,7 +50,6 @@ public class RegistroLaboralDAOImpl implements RegistroLaboralDAO {
                 .getResultList();
     }
 
-    // Guardar
     @Transactional
     @Override
     public RegistroLaboral save(RegistroLaboral registro) {
@@ -61,7 +58,6 @@ public class RegistroLaboralDAOImpl implements RegistroLaboralDAO {
         return registro;
     }
 
-    // Actualizar
     @Transactional
     @Override
     public RegistroLaboral update(RegistroLaboral registro) {

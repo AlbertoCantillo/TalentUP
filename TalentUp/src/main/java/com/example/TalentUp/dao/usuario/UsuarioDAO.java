@@ -3,6 +3,7 @@ package com.example.TalentUp.dao.usuario;
 import com.example.TalentUp.entity.Usuarios;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UsuarioDAO {
 
@@ -13,5 +14,7 @@ public interface UsuarioDAO {
     Usuarios save(Usuarios usuario);
 
     public void deleteById(int theId);
+
+    Optional<Usuarios> findByCorreo(String correo);
 }
 

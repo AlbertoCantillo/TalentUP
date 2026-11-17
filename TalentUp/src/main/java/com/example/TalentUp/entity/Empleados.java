@@ -1,40 +1,62 @@
+
 package com.example.TalentUp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
-import java.time.LocalDate;
 
+import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name="empleado")
+@Table(name = "empleado")
 public class Empleados {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_empleado")
+    @Column(name = "id_empleado")
     private Integer id;
 
-    @Column(name = "nombre")
+    @NotBlank(message = "El nombre del empleado es obligatorio")
+    @Size(max = 255, message = "El nombre no puede superar los 255 caracteres")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "documento")
+    @NotBlank(message = "El documento es obligatorio")
+    @Size(max = 255, message = "El documento no puede superar los 255 caracteres")
+    @Column(name = "documento", nullable = false)
     private String documento;
 
-    @Column(name = "id_cargo")
+    @NotNull(message = "El cargo es obligatorio")
+    @Positive(message = "El ID del cargo debe ser positivo")
+    @Column(name = "id_cargo", nullable = false)
     private Integer idCargo;
 
-    @Column(name="id_departamento")
-    private  Integer idDepartamento;
+    @NotNull(message = "El departamento es obligatorio")
+    @Positive(message = "El ID del departamento debe ser positivo")
+    @Column(name = "id_departamento", nullable = false)
+    private Integer idDepartamento;
 
-    @Column(name="id_tipo_contrato")
+    @NotNull(message = "El tipo de contrato es obligatorio")
+    @Positive(message = "El ID del tipo de contrato debe ser positivo")
+    @Column(name = "id_tipo_contrato", nullable = false)
     private Integer idTipoContrato;
 
-    @Column(name="telefono")
+    @Pattern(
+            regexp = "^[0-9]{7,15}$",
+            message = "El teléfono debe contener entre 7 y 15 dígitos"
+    )
+    @Column(name = "telefono")
     private String telefono;
 
-    @Column(name="correo")
+    @NotBlank(message = "El correo es obligatorio")
+    @Email(message = "El correo debe tener un formato válido")
+    @Size(max = 255, message = "El correo no puede superar los 255 caracteres")
+    @Column(name = "correo", nullable = false)
     private String correo;
 
-    @Column(name="fecha_ingreso")
+    @NotNull(message = "La fecha de ingreso es obligatoria")
+    @PastOrPresent(message = "La fecha de ingreso no puede ser futura")
+    @Column(name = "fecha_ingreso", nullable = false)
     private LocalDate fechaIngreso;
 }

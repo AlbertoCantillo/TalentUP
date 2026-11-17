@@ -2,6 +2,7 @@ package com.example.TalentUp.controller;
 
 import com.example.TalentUp.entity.Empleados;
 import com.example.TalentUp.service.empleados.EmpleadosService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,6 @@ import java.util.List;
 @RequestMapping("/api/empleados")
 public class EmpleadoRestControler {
     private EmpleadosService empleadosService;
-
 
     @Autowired
     public EmpleadoRestControler(EmpleadosService empleadosService) {
@@ -29,16 +29,16 @@ public class EmpleadoRestControler {
     }
 
     @PostMapping
-    public Empleados addEmpleados(@RequestBody Empleados empleado) {
-
+    public Empleados addEmpleados(@Valid @RequestBody Empleados empleado) {
         return empleadosService.save(empleado);
-
     }
-    @PutMapping()
-    public Empleados updateEmpleados(@RequestBody Empleados empleado) {
-        Empleados dbEmpleado=empleadosService.save(empleado);
+
+    @PutMapping
+    public Empleados updateEmpleados(@Valid @RequestBody Empleados empleado) {
+        Empleados dbEmpleado = empleadosService.save(empleado);
         return dbEmpleado;
     }
+
     @DeleteMapping("/{theId}")
     public String deleteEmpleados(@PathVariable int theId) {
 

@@ -3,6 +3,7 @@ package com.example.TalentUp.controller;
 
 import com.example.TalentUp.entity.RegistroLaboral;
 import com.example.TalentUp.service.registroLaboral.RegistroLaboralService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -19,8 +20,6 @@ public class RegistroLaboralRestController {
         this.registroLaboralService = registroLaboralService;
     }
 
-
-    // Consultar por tipo: ASISTENCIA o AUSENCIA
     @GetMapping("/tipo/{tipoRegistro}")
     public List<RegistroLaboral> findByTipoRegistro(
             @PathVariable String tipoRegistro) {
@@ -29,13 +28,12 @@ public class RegistroLaboralRestController {
                 tipoRegistro.toUpperCase());
     }
 
-    // Consultartodo el historial
     @GetMapping("/historial")
     public List<RegistroLaboral> findAll() {
         return registroLaboralService.findAll();
     }
 
-    // Consultar por empleado
+
     @GetMapping("/empleado/{idEmpleado}")
     public List<RegistroLaboral> findByIdEmpleado(
             @PathVariable Integer idEmpleado) {
@@ -43,15 +41,13 @@ public class RegistroLaboralRestController {
         return registroLaboralService.findByIdEmpleado(idEmpleado);
     }
 
-    // Guardar
     @PostMapping
-    public RegistroLaboral save(@RequestBody RegistroLaboral registro) {
+    public RegistroLaboral save(@Valid @RequestBody RegistroLaboral registro) {
         return registroLaboralService.save(registro);
     }
 
-    // Actualizar
     @PutMapping
-    public RegistroLaboral update(@RequestBody RegistroLaboral registro) {
+    public RegistroLaboral update(@Valid @RequestBody RegistroLaboral registro) {
         return registroLaboralService.update(registro);
     }
 }
